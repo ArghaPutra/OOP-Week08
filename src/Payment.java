@@ -1,27 +1,42 @@
-import java.util.ArrayList;
-import java.util.List;
+public abstract class Payment {
+    protected boolean isPaidOff;
+    protected Item item;
 
-public class Payment {
-    protected List<Item> items = new ArrayList<>();
+    public abstract int pay();
 
-    public void addItem(Item item) {
-        if (item != null) items.add(item);
+    public Payment() {
+        this.isPaidOff = false;
+        this.item = null;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public Payment(Item item) {
+        this.isPaidOff = false;
+        this.item = item;
     }
 
-    public double getTotal() {
-        return items.stream().mapToDouble(i -> i.getPrice() * 1.0).sum();
+    public boolean isPaidOff() {
+        return isPaidOff;
     }
 
-    public void printBill() {
-        System.out.println("===== BILL =====");
-        for (Item i : items) {
-            System.out.printf("%s x%d @ %.0f = %.0f%n",
-                    i.getName(), 1, (double) i.getPrice(), (double) i.getPrice());
+    public Item getItem() {
+        return item;
+    }
+
+    public String getItemName() {
+        return item.getName();
+    }
+
+    public String getStatus() {
+        if (isPaidOff) {
+            return "FINISHED";
         }
-        System.out.printf("TOTAL: %.0f%n", getTotal());
+        return "ON PROGRESS";
+    }
+
+    public int getRemainingAmount() {
+        if (isPaidOff) {
+            return 0;
+        }
+        return item.getPrice();
     }
 }

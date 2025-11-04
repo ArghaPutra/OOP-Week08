@@ -17,3 +17,4 @@ public class Cash extends Payment {
         return "CASH";
     }
 }
+.

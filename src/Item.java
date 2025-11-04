@@ -1,21 +1,20 @@
 public class Item {
-    private String name;
-    private String type;
-    private int price; // pakai int agar tampil tanpa desimal
+    private String Name;
+    private String Type;
+    private int Price;
 
     public Item(String name, String type, int price) {
-        this.name  = name;
-        this.type  = type;
-        this.price = price;
+        this.Name  = name;
+        this.Type  = type;
+        this.Price = price;
     }
 
-    public String getName()  { return name; }
-    public String getType()  { return type; }
-    public int    getPrice() { return price; }
+    public String getName() { return Name; }
+    public void   setName(String name) { Name = name; }
 
-    @Override
-    public String toString() {
-        return String.format("Nama  : %s%nTipe  : %s%nHarga : %d",
-                name, type, price);
-    }
+    public String getType() { return Type; }
+    public void   setType(String type) { Type = type; }
+
+    public int getPrice() { return Price; }
+    public void setPrice(int price) { Price = price; }
 }
